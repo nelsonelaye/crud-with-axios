@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
 import { reqType } from "./CreatePage.types";
+import useAxios from "../../hooks/useAxios";
 
 const CreatePage = () => {
   const [loading, setLoading] = useState(false);
@@ -13,7 +14,6 @@ const CreatePage = () => {
     title: "",
     body: "",
   });
-
   const baseURL = "https://jsonplaceholder.typicode.com/posts";
 
   const navigate = useNavigate();

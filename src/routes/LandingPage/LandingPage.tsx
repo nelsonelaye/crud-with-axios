@@ -6,12 +6,18 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { BounceLoader, ClipLoader } from "react-spinners";
 import { responseType } from "./LandingPage.types";
+import useAxios from "../../hooks/useAxios";
 
 const LandingPage = () => {
   const [data, setData] = useState(Array<responseType>);
   const [loading, setLoading] = useState(false);
 
   const baseURL = "https://jsonplaceholder.typicode.com/posts";
+
+  // const { response, error, loading } = useAxios({
+  //   method: "get",
+  //   url: baseURL,
+  // });
 
   let th = [
     { name: "ID" },
@@ -56,6 +62,9 @@ const LandingPage = () => {
 
   useEffect(() => {
     fetchData();
+    // if (response !== null) {
+    //   setData(response);
+    // }
   }, []);
   return (
     <main>
