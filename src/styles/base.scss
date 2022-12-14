@@ -1,0 +1,12 @@
+$blue: #00bfff;
+
+%display {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+@font-face {
+  font-family: "ABeeZee-Regular";
+  src: url("../assets/fonts/ABeeZee-Regular.ttf");
+}

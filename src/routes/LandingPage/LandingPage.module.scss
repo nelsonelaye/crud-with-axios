@@ -1,0 +1,42 @@
+@import "../../styles/base.scss";
+
+main {
+  padding: 0 10px;
+}
+h1 {
+  font-weight: 800;
+  font-size: 35px;
+  margin: 20px auto 80px;
+  text-align: center;
+}
+
+.loader {
+  @extend %display;
+}
+
+table {
+  border-spacing: 2rem;
+  border: 1px solid grey;
+  width: 100%;
+  margin: 20px auto 20px;
+  background-color: #fff;
+}
+
+th {
+  text-align: left;
+  // margin: auto;
+}
+
+tbody tr {
+  // margin-bottom: 30px;
+}
+
+@media screen and (min-width: 768px) {
+  main {
+    padding: 0 50px;
+  }
+
+  table {
+    width: 100%;
+  }
+}

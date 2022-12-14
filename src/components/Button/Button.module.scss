@@ -1,0 +1,12 @@
+@import "../../styles/base.scss";
+
+button {
+  background-color: $blue;
+  color: #fff;
+  border: 0;
+  padding: 10px 30px;
+  border-radius: 5px;
+  font-size: 15px;
+  text-transform: capitalize;
+  cursor: pointer;
+}
