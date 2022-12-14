@@ -1,12 +1,12 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import Button from "../../components/Button";
-import style from "./CreatePage.module.scss";
-import { useNavigate } from "react-router-dom";
+import style from "./UpdatePage.module.scss";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
-import { reqType } from "./CreatePage.types";
+import { reqType } from "./UpdatePage.types";
 
-const CreatePage = () => {
+const UpdatePage = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<reqType>({
     userId: 0,
@@ -16,6 +16,7 @@ const CreatePage = () => {
 
   const baseURL = "https://jsonplaceholder.typicode.com/posts";
 
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const CollectInput = useCallback(
@@ -32,7 +33,7 @@ const CreatePage = () => {
       setLoading(true);
 
       await axios
-        .post(baseURL, data)
+        .patch(`${baseURL}/${id}`, data)
         .then((res) => {
           console.log(res.data);
         })
@@ -48,6 +49,25 @@ const CreatePage = () => {
     },
     [data]
   );
+
+  const fetchData = useCallback(
+    (id?: string) => {
+      axios
+        .get(`${baseURL}/${id}`)
+        .then((res) => {
+          console.log("update this", res);
+          setData(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    [data]
+  );
+
+  useEffect(() => {
+    fetchData(id);
+  }, []);
   return (
     <>
       <main>
@@ -64,6 +84,7 @@ const CreatePage = () => {
             <input
               type="text"
               id="title"
+              defaultValue={data.title}
               placeholder="Enter new title here"
               onChange={(e) => {
                 CollectInput("title", e.target.value);
@@ -79,6 +100,7 @@ const CreatePage = () => {
             <input
               type="text"
               id="body"
+              defaultValue={data.body}
               onChange={(e) => {
                 CollectInput("body", e.target.value);
               }}
@@ -93,6 +115,7 @@ const CreatePage = () => {
             <input
               type="number"
               id="userId"
+              defaultValue={data.userId}
               onChange={(e) => {
                 CollectInput("userId", e.target.value);
               }}
@@ -112,4 +135,4 @@ const CreatePage = () => {
   );
 };
 
-export default CreatePage;
+export default UpdatePage;

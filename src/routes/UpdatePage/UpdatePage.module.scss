@@ -1,0 +1,43 @@
+@import "../../styles/base.scss";
+
+main {
+  //   @extend %main-layout;
+}
+
+h1 {
+  //   color: $dark-color;
+  margin-bottom: 50px;
+}
+form {
+  @extend %display;
+  margin: auto;
+  width: 85%;
+}
+
+.input_hold {
+  width: 100%;
+  margin-bottom: 20px;
+
+  label {
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 5px;
+
+    .red {
+      color: red;
+    }
+  }
+  input {
+    width: 100%;
+    padding: 15px 10px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid;
+  }
+}
+
+@media screen and (min-width: 425px) {
+  form {
+    width: 320px;
+  }
+}

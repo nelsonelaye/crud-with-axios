@@ -63,7 +63,7 @@ const LandingPage = () => {
       {loading ? (
         <div className={style["loader"]}>
           <BounceLoader size="50px" />
-          <div>loading data...</div>
+          <div style={{ marginTop: "20px" }}>loading data...</div>
         </div>
       ) : (
         <>
@@ -87,7 +87,9 @@ const LandingPage = () => {
                   <td>{prop.body}</td>
                   <td>
                     {" "}
-                    <Button text="update" />
+                    <Link to={`/update/${prop.id}`}>
+                      <Button text="update" />
+                    </Link>
                   </td>
                   <td>
                     <Button
