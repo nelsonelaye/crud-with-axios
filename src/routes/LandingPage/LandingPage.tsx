@@ -14,10 +14,10 @@ const LandingPage = () => {
 
   const baseURL = "https://jsonplaceholder.typicode.com/posts";
 
-  // const { response, error, loading } = useAxios({
-  //   method: "get",
-  //   url: baseURL,
-  // });
+  const { response, error, loadingState } = useAxios({
+    method: "get",
+    url: baseURL,
+  });
 
   let th = [
     { name: "ID" },
@@ -28,21 +28,21 @@ const LandingPage = () => {
     { name: "" },
   ];
 
-  const fetchData = useCallback(async () => {
-    setLoading(true);
-    await axios
-      .get(baseURL)
-      .then((res) => {
-        console.log(res);
-        setData(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [data]);
+  // const fetchData = useCallback(async () => {
+  //   setLoading(true);
+  //   await axios
+  //     .get(baseURL)
+  //     .then((res) => {
+  //       console.log(res);
+  //       setData(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     })
+  //     .finally(() => {
+  //       setLoading(false);
+  //     });
+  // }, [data]);
 
   const DeleteData = async (id: number) => {
     setLoading(true);
@@ -61,11 +61,13 @@ const LandingPage = () => {
   };
 
   useEffect(() => {
-    fetchData();
-    // if (response !== null) {
-    //   setData(response);
-    // }
-  }, []);
+    if (response != null) {
+      setData(response);
+      setLoading(loadingState);
+    }
+
+    // fetchData();
+  }, [response]);
   return (
     <main>
       <h1>JSON-Placeholder CRUD app</h1>

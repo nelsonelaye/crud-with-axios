@@ -8,27 +8,37 @@ interface props {
   headers?: any;
 }
 
+type responseType = {
+  title: string;
+  body: string;
+  userId: number;
+  id: number;
+};
+
 function useAxios({ url, method, body, headers }: props) {
-  const [response, setResponse] = useState();
+  const [response, setResponse] = useState(Array<responseType>);
   const [error, setError] = useState(Error);
-  const [loading, setLoading] = useState(false);
+  const [loadingState, setLoadingState] = useState(false);
   const fetchData = async () => {
-    await axios[method](url, JSON.parse(headers), JSON.parse(body))
-      .then((res: AxiosResponse) => {
+    await axios[method](url, headers, body)
+      .then((res) => {
+        // console.log(res);
+
         setResponse(res.data);
       })
-      .catch((err: Error) => {
+      .catch((err) => {
+        console.log(err);
         setError(err);
       })
       .finally(() => {
-        setLoading(false);
+        setLoadingState(false);
       });
   };
   useEffect(() => {
     fetchData();
   }, [url, method, body, headers]);
 
-  return { response, error, loading };
+  return { response, error, loadingState };
 }
 
 export default useAxios;

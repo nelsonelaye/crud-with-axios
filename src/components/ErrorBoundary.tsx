@@ -36,6 +36,7 @@ class ErrorBoundary extends React.Component<MyProps, States> {
               outline: "none",
               border: 0,
               borderRadius: "10px",
+              margin: "auto",
             }}
             onClick={() => {
               window.location.reload();
