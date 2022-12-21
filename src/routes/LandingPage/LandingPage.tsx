@@ -68,7 +68,7 @@ const LandingPage = () => {
   }, []);
   return (
     <main>
-      <h1>CRUD app</h1>
+      <h1>JSON-Placeholder CRUD app</h1>
       {loading ? (
         <div className={style["loader"]}>
           <BounceLoader size="50px" />
